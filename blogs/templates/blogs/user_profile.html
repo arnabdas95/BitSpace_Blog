@@ -15,7 +15,7 @@
 
 
                 <p class="item">Name: {{user_profile.first_name}} {{user_profile.last_name}}</p>
-                 <p class="item">Status: {{user_profile.profile.about}}</p>
+                 <p class="item">About: {{user_profile.profile.about}}</p>
            {% if user_profile == user %}
 
                         <small ><a  href="{% url 'blogs:account_update'  %}">Update Account</a></small>
