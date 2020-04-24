@@ -1,0 +1,31 @@
+{% extends 'blogs/base.html' %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+<div class="container pt-5 mt-5" >
+    <div class="jumbotron  ">
+
+
+              <form method="post"  enctype='multipart/form-data'>
+                  <div class="form ">
+                      {% csrf_token %}
+
+                         {{form|crispy}}
+                  </div>
+                   <div class="form-row  d-flex justify-content-center">
+                       {{profile_form|crispy}}
+
+                  </div>
+
+ <button type="submit" class="btn btn-primary mb-2">Sign up</button>
+
+
+              </form>
+
+    </div>
+
+</div>
+
+
+{% endblock %}

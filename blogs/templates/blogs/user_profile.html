@@ -1,0 +1,65 @@
+{% extends 'blogs/base.html' %}
+
+{% block content %}
+
+
+<div class="container pt-5 mt-5" xmlns="http://www.w3.org/1999/html">
+    <div class="jumbotron  ">
+
+<div class="menu">
+    <img class=" mypic" src=" {{user_profile.profile.pro_pic.url}}">
+      <div class="profile">
+
+          <p class="item"> <b>Username: {{user_profile.username}}</b></p>
+
+
+
+                <p class="item">Name: {{user_profile.first_name}} {{user_profile.last_name}}</p>
+                 <p class="item">Status: {{user_profile.profile.about}}</p>
+           {% if user_profile == user %}
+
+                        <small ><a  href="{% url 'blogs:account_update'  %}">Update Account</a></small>
+                    </div>
+
+
+         {% endif %}
+
+      </div>
+
+
+
+
+        <div class="article">
+<p class="heading">List of posted Articles</p>
+            {% if user_profile.article_set.all.count == 0 %}
+          <i > No article is posted yet !!</i>
+
+            {% else %}
+    {% for post in user_profile.article_set.all %}
+        <p class="article-item"><a  href="{% url 'blogs:detail' post.id %}">{{post.title}}</a></p>
+    {% endfor %}
+{% endif %}
+        </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+
+{% endblock %}

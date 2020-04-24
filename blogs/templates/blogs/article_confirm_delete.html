@@ -1,0 +1,29 @@
+{% extends 'blogs/base.html' %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+<div class="container pt-5 mt-5" >
+    <div class="jumbotron  d-flex justify-content-center">
+
+
+              <form method="post"  enctype='multipart/form-data'>
+                    {% csrf_token %}
+
+                         <p >Delete     <b>{{article.title}}  ?</b> </p>
+
+
+
+
+
+                       <button type="submit" class="btn btn-danger mb-2 mr-5">Yes,Delete</button>
+                      <a href="{% url 'blogs:index' %}">No, Cancel</a>
+
+              </form>
+
+    </div>
+
+</div>
+
+
+{% endblock %}
