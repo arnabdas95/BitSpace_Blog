@@ -5,42 +5,23 @@
 
 <div class="container pt-5 mt-5" >
     <div class="jumbotron  d-flex justify-content-center">
-
-
-
-<div class="menu-detail">
-
-    <p class="heading"> {{article_detail.title}}</p>
-    <div class="details_date">
-                             <img class="navpic" src="{{article_detail.user.profile.pro_pic.url}}" width="50" height="50"   alt=""><br>
-
-                               <a  href="{% url 'blogs:user_profile' article_detail.user.id %}">{{article_detail.user}}</a>
-                            <br><i>  {{article_detail.publish_date}}</i>
+        <div class="menu-detail">
+            <p class="heading"> {{article_detail.title}}</p>
+            <div class="details_date">
+                <img class="navpic" src="{{article_detail.user.profile.pro_pic.url}}" width="50" height="50"   alt=""><br>
+                <a  href="{% url 'blogs:user_profile' article_detail.user.id %}">{{article_detail.user}}</a>
+                <br><i>  {{article_detail.publish_date}}</i>
+             </div>
+            <div class="post">
+                 <img class="img-fluid" src="{{article_detail.title_image.url}}"  alt="title_image">{{article_detail.details|safe|linebreaks}}
+            </div>
+            {% if article_detail.user == user %}
+                <a href="{% url 'blogs:update' article_detail.id %}"> Update</a>
+                 |
+                <a  href="{% url 'blogs:delete' article_detail.id %}"> Delete</a>
+            {% endif%}
+        </div>
     </div>
-<div class="post">{{article_detail.details|safe|linebreaks}}</div>
-
-
-
-
-                        {% if article_detail.user == user %}
-                            <a href="{% url 'blogs:update' article_detail.id %}"> Update</a>
-    |
-                           <a  href="{% url 'blogs:delete' article_detail.id %}"> Delete</a>
-                        {% endif%}
 </div>
-
-
-
-
-
-
-
-
-
-
-    </div>
-
-</div>
-
 
 {% endblock %}

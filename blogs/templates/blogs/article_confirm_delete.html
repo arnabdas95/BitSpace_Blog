@@ -10,14 +10,15 @@
               <form method="post"  enctype='multipart/form-data'>
                     {% csrf_token %}
 
-                         <p >Delete     <b>{{article.title}}  ?</b> </p>
+                         <p >Delete     <b>{{article.title}}  ?</b>  <br> <small >This will not be undone</small></p>
+
 
 
 
 
 
                        <button type="submit" class="btn btn-danger mb-2 mr-5">Yes,Delete</button>
-                      <a href="{% url 'blogs:index' %}">No, Cancel</a>
+                      <a href="{% url 'blogs:user_profile' user.id %}">No, Cancel</a>
 
               </form>
 

@@ -39,7 +39,23 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blogs',
     'crispy_forms',
+    'ckeditor',
+
 ]
+
+CKEDITOR_UPLOAD_PATH = "/uploads/"
+
+CKEDITOR_CONFIGS = {
+'default': {
+    'toolbar':[["Format", "Bold", "Italic", "Underline", "Strike", "SpellChecker"],
+                ['NumberedList', 'BulletedList', "Indent", "Outdent", 'JustifyLeft', 'JustifyCenter',
+                 'JustifyRight', 'JustifyBlock'],
+                [ "Table", "Link", "Unlink", "Anchor", "SectionLink", "Subscript", "Superscript"], ['Undo', 'Redo'], ["Source"],
+                ["Maximize"]],
+    'width': 'auto',
+
+}}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -124,6 +140,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 STATIC_URL = '/static/'
+
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'

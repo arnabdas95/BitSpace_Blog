@@ -1,6 +1,8 @@
+import ckeditor
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 
@@ -22,16 +24,14 @@ class Profile(models.Model):
 class Article(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=500)
-    details = models.TextField()
-    publish_date = models.DateTimeField(auto_now_add=True)
+    #details = models.TextField()
+    details = RichTextField()
+    title_image = models.ImageField(default='default_title.jpg', upload_to='Article_heading_pics')
+    publish_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.user.username
-    '''
-        def save(self,*args,**kwargs):
-        self.details_html=misaka.html(self.details)
-        super().save(*args,**kwargs)
-        '''
+
 
 
     class Meta:

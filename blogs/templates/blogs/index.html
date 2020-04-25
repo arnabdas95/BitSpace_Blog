@@ -2,44 +2,25 @@
 
 {% block content %}
 
+<div class="container ">
 
+    <div class="box">
+        {% for post in article %}
+        <div class="articlebox">
+            <div class="card mt-5" style="width: 18rem;">
+               <img class="card-img-top mypicbox" src="{{post.title_image.url}}" alt="Card image cap">
+               <div class="card-body">
+                   <h5 class="card-title"><a  href="{% url 'blogs:detail' post.id %}">{{post.title}}</a></h5>
 
+                   <div class="footer">
+                            <img class="indexpic" src=" {{post.user.profile.pro_pic.url}}">
+                            <small class="text-muted"><a  href="{% url 'blogs:user_profile' post.user.id %}">{{post.user}} | {{post.publish_date}}</a></small>
+                   </div>
+                </div>
+             </div>
+        </div>
 
-  <div class="container ">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="box">
-    {% for post in article %}
-    <div class="articlebox">
-        <div class="card mt-5" style="width: 18rem;">
-  <img class="card-img-top mypicbox" src="{{post.user.profile.pro_pic.url}}" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title"><a  href="{% url 'blogs:detail' post.id %}">{{post.title}}</a></h5>
-
-      <div class="footer">
-                        <small class="text-muted"><a  href="{% url 'blogs:user_profile' post.user.id %}">{{post.user}} | {{post.publish_date}}</a></small>
-                    </div>
-  </div>
-</div>
+      {% endfor %}
     </div>
-
-       {% endfor %}
 </div>
-
-
-     </div>
 {% endblock %}

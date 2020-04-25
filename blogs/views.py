@@ -10,6 +10,7 @@ from .forms import SignUpForm,ProfileForm,UserUpdateForm,ProfileUpdateForm
 from .import models
 from django.views.generic import CreateView,DeleteView,DetailView,ListView,UpdateView
 from .models import Article
+from django import  forms
 
 # Create your views here.
 
@@ -56,7 +57,7 @@ def user_logout(request):
 
 #create new post
 class ArticleCreateView(LoginRequiredMixin,SuccessMessageMixin,CreateView):
-    fields = ('title','details',)
+    fields = ('title','details','title_image')
     model = models.Article
     success_url = reverse_lazy("blogs:index")
     success_message = "Article was Created successfully"
@@ -65,9 +66,10 @@ class ArticleCreateView(LoginRequiredMixin,SuccessMessageMixin,CreateView):
         return super().form_valid(form)
 
 
+
 #post update
 class ArticleUpdateView(LoginRequiredMixin,UserPassesTestMixin,SuccessMessageMixin,UpdateView):
-    fields = ('title', 'details')
+    fields = ('title', 'details','title_image')
     model = models.Article
     success_message = "Article was Updated successfully"
 

@@ -22,6 +22,7 @@
   
   .menu {
       display: flex;
+
       flex-wrap: wrap;
       justify-items: center;
       justify-content: center;
@@ -51,12 +52,15 @@
   .article {
       margin: 10px;
       min-width: 30%;
+
+
   }
   
   .article-item {
       padding: 12px;
       background-color: rgba(193, 197, 197, 0.212);
       border-bottom: 1px solid #393e46;
+
   }
   
   a {
@@ -74,11 +78,14 @@
   }
   
   .post {
+
       text-align: justify;
       padding-bottom: 10px;
       padding-top: 10px;
       border-bottom: 2px solid #393e4652;
   }
+  .post > p > img{width: 100%;
+  height: auto;}
   
   .mypic {
       height: 150px;
@@ -114,3 +121,7 @@
   .mypicbox {
       height: 200px;
   }
+  .indexpic{
+  height:20px;
+  width:20px;
+   border-radius: 50%;}
