@@ -10,7 +10,7 @@ from .forms import SignUpForm,ProfileForm,UserUpdateForm,ProfileUpdateForm
 from .import models
 from django.views.generic import CreateView,DeleteView,DetailView,ListView,UpdateView
 from .models import Article
-from django import  forms
+from django.core.paginator import Paginator
 
 # Create your views here.
 
@@ -20,9 +20,9 @@ class IndexView(ListView):
     context_object_name = 'article'
     model = models.Article
     template_name = 'blogs/index.html'
+    paginate_by = 4
     def get_queryset(self):
-        return Article.objects.all()
-
+         return Article.objects.all()
 
 #register new user
 def signup(request):

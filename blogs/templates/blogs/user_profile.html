@@ -25,6 +25,7 @@
                                               <i > No article is posted yet !!</i>
                                               {% else %}
                                                      {% for post in user_profile.article_set.all %}
+
                                                      <p class="article-item"><a  href="{% url 'blogs:detail' post.id %}">{{post.title}}</a>
                                                          {% if post.user == user %}
                                                           <a href="{% url 'blogs:update' post.id %}"> <small style="margin:5px;margin-top:3px;">Update</small></a>|
