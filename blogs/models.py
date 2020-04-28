@@ -1,8 +1,10 @@
 import ckeditor
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
 from ckeditor.fields import RichTextField
+
 
 # Create your models here.
 
@@ -24,8 +26,8 @@ class Profile(models.Model):
 class Article(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=500)
-    #details = models.TextField()
-    details = RichTextField()
+    details = RichTextUploadingField()
+    #details = RichTextField()
     title_image = models.ImageField(default='default_title.jpg', upload_to='Article_heading_pics')
     publish_date = models.DateTimeField(auto_now=True)
 

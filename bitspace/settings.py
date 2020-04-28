@@ -40,21 +40,23 @@ INSTALLED_APPS = [
     'blogs',
     'crispy_forms',
     'ckeditor',
+    'ckeditor_uploader',
 
 ]
 
-CKEDITOR_UPLOAD_PATH = "/uploads/"
+CKEDITOR_UPLOAD_PATH = os.path.join(BASE_DIR, 'media/upload')
 
 CKEDITOR_CONFIGS = {
 'default': {
-    'toolbar':[["Format", "Bold", "Italic", "Underline", "Strike", "SpellChecker"],
+    'toolbar':[["Format", "Bold", "Italic", "Underline", "Strike",'TextColor' , "SpellChecker"],
                 ['NumberedList', 'BulletedList', "Indent", "Outdent", 'JustifyLeft', 'JustifyCenter',
-                 'JustifyRight', 'JustifyBlock'],
-                [ "Table", "Link", "Unlink", "Anchor", "SectionLink", "Subscript", "Superscript"], ['Undo', 'Redo'], ["Source"],
-                ["Maximize"]],
+                 'JustifyRight', 'JustifyBlock'],['Smiley','SpecialChar'],
+                [ "Table", "Link", "Unlink", "Anchor", "SectionLink", "Subscript", "Superscript",'Blockquote',], ['Undo', 'Redo','Find','Replace'], ["Source"],
+                ["Maximize"],[ 'Preview']],
     'width': 'auto',
 
 }}
+
 
 
 MIDDLEWARE = [
@@ -140,7 +142,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
