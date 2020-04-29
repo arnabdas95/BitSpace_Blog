@@ -27,5 +27,7 @@ urlpatterns = [
     path('detail/<int:pk>/', views.ArticleDetailView.as_view(), name='detail'),
     path('user_profile/<int:pk>/', views.UserProfileDetailView.as_view(), name='user_profile'),
 
+    path('search/', views.search, name='search'),
+
 
 ]

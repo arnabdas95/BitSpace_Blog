@@ -1,7 +1,18 @@
 {% extends 'blogs/base.html' %}
-
+{% block msg %}
+alert alert-danger
+{% endblock %}
 {% block content %}
 {%load static %}
+
+
+
+
+
+
+
+
+
 
 <div class="container-fluidic ">
     <div class="box">
@@ -20,18 +31,18 @@
              </div>
         </div>
          {% endfor %}
-
     </div>
      <div class="pagination justify-content-center "  >
         {% if page_obj.has_previous %}
-         <a class="page-link" href="?page=1" style="border-bottom:2px solid #00adb5;">First</a>
-            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" style="border-bottom:2px solid #00adb5;"><</a>
-        {% endif %}
-        {% for num in page_obj.paginator.page_range %}
-            {% if page_obj.number ==  num %}
-                 <div class="page-link" style="color:white;background-color:#00adb5;"> <strong>{{num}}/{{ page_obj.paginator.num_pages }}</strong></div>
-            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-             <a  class="page-link" href="?page={{num}}"  style="border-bottom:2px solid #00adb5;" >{{num}}</a>
+             <a class="page-link" href="?page=1" style="border-bottom:2px solid #00adb5;">First</a>
+             <a class="page-link" href="?page={{ page_obj.previous_page_number }}" style="border-bottom:2px solid #00adb5;"><</a>
+         {% endif %}
+         {% for num in page_obj.paginator.page_range %}
+             {% if page_obj.number ==  num %}
+                 <div class="page-link" style="color:white;background-color:#00adb5;">
+                      <strong>{{num}}/{{ page_obj.paginator.num_pages }}</strong></div>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <a  class="page-link" href="?page={{num}}"  style="border-bottom:2px solid #00adb5;" >{{num}}</a>
             {% endif %}
         {% endfor %}
          {% if page_obj.has_next %}
@@ -46,23 +57,20 @@
         <div class="inner1">
             <div class="about">
                 <h5>About</h5>
-           <p> Hi, I am this blog is created for learning purpose.
-               Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-               sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-               Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-               Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+               <p> Hi, I am this blog is created for learning purpose.
+                   Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                   sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                   Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                   Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                </p>
-
             </div>
-
             <div class="other">
                 <h5>About</h5>
-            <p> tent of a page when looking at its layout.
-             Thididunt ut labore et dolore magna aliqua.
-               Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              </p>
+                <p> tent of a page when looking at its layout.
+                 Thididunt ut labore et dolore magna aliqua.
+                   Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
             </div>
-
         </div>
 </div>
 

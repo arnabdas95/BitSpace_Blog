@@ -1,0 +1,51 @@
+{% extends 'blogs/base.html' %}
+{% block search %}
+      <form class="form-inline my-2 my-lg-0 mr-2" method="post">
+          {% csrf_token %}
+          <input class="form-control mr-sm-2" type="search" placeholder="Search user" aria-label="Search" name="srch">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+{% endblock %}
+
+{% block msg %}
+    alert alert-danger
+{% endblock %}
+
+{% block content %}
+    <div class="container pt-5 mt-5" xmlns="http://www.w3.org/1999/html">
+    {% if match %}
+        <div class="jumbotron">
+            {% for matching in match %}
+              <div class="article-item">
+                 <a href="{%url 'blogs:user_profile' matching.id %}">user: {{matching.username}}   <img class=" indexpic" src=" {{matching.profile.pro_pic.url}}"></a>
+                 <p>Name: {{matching.first_name}}</p>
+              </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+
+<div class="footer-outer">
+        <div class="inner1">
+            <div class="about">
+                <h5>About</h5>
+               <p> Hi, I am this blog is created for learning purpose.
+                   Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                   sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                   Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                   Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+               </p>
+            </div>
+
+            <div class="other">
+                <h5>About</h5>
+                <p> tent of a page when looking at its layout.
+                 Thididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+            </div>
+
+        </div>
+
+</div>
+{% endblock %}

@@ -1,5 +1,7 @@
 from django.contrib import messages
+from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
+from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login,logout
@@ -21,8 +23,10 @@ class IndexView(ListView):
     model = models.Article
     template_name = 'blogs/index.html'
     paginate_by = 4
-    def get_queryset(self):
-         return Article.objects.all()
+    
+   # def get_queryset(self):
+
+        # return Article.objects.all()
 
 #register new user
 def signup(request):
@@ -142,4 +146,24 @@ def user_profile_Update(request):
         uform = UserUpdateForm(instance=request.user)
         pform = ProfileUpdateForm(instance=request.user.profile)
     return render(request, 'blogs/account_update.html', {'uform': uform,'pform':pform})
+
+def search(request):
+    if request.method == 'POST':
+        srch = request.POST['srch']
+        if srch:
+            find = User.objects.filter(Q(username__istartswith=srch)| Q(first_name__istartswith=srch))
+            if find:
+                #messages.success(request, f'{find}')
+                match={'match':find}
+                return render(request,'blogs/search.html',match)
+            else:
+                messages.error(request,'Not found')
+                return render(request, 'blogs/search.html')
+        else:
+            return render(request, 'blogs/search.html')
+
+    else:
+        return render(request,'blogs/search.html')
+
+
 
