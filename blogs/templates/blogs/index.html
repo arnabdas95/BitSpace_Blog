@@ -11,16 +11,13 @@ alert alert-danger
 
 
 
-
-
-
 <div class="container-fluidic ">
     <div class="box">
         {% for post in article %}
         <div class="articlebox">
             <div class="card mt-5" style="width: 18rem;">
                <img class="card-img-top mypicbox" src="{{post.title_image.url}}" alt="Card image cap">
-               <div class="card-body">
+               <div class="card-body" >
                    <h5 class="card-title"><a  href="{% url 'blogs:detail' post.id %}">{{post.title}}</a></h5>
 
                    <div class="footer">

@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Q
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login,logout
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
@@ -23,10 +23,7 @@ class IndexView(ListView):
     model = models.Article
     template_name = 'blogs/index.html'
     paginate_by = 4
-    
-   # def get_queryset(self):
 
-        # return Article.objects.all()
 
 #register new user
 def signup(request):
@@ -113,7 +110,19 @@ class ArticleDetailView(DetailView):
     model = models.Article
     template_name = 'blogs/detail.html'
 
+#get total likes and unlike like logic
+    def get_context_data(self, **kwargs):
+        context = super(ArticleDetailView, self).get_context_data(**kwargs)
 
+        like_unlike =  get_object_or_404(Article, id=self.kwargs['pk'])
+        total_likes =  like_unlike.total_likes()
+
+        is_like = False
+        if like_unlike.likes.filter(id=self.request.user.id).exists():
+            is_like = True
+        context['is_like'] = is_like
+        context['total_likes'] = total_likes
+        return context
 
 
 #get all details and post  of a particuler user
@@ -166,4 +175,25 @@ def search(request):
         return render(request,'blogs/search.html')
 
 
+#function for like and unlike button
+@login_required()
+def post_like(request):
+    like = get_object_or_404(Article, id=request.POST.get('like'))
 
+    is_like = False
+    if like.likes.filter(id=request.user.id).exists():
+        like.likes.remove(request.user)
+        is_like = False
+    else:
+        like.likes.add(request.user)
+        is_like = True
+
+    pk = request.POST.get('like')
+    return HttpResponseRedirect(reverse('blogs:detail', args=[pk]))
+
+#function for list of all likes of a user on a article
+def like_list(request, pk):
+    like = get_object_or_404(Article, id=pk).likes.all()
+    print(like[0])
+
+    return render(request,'blogs/like_list.html',{'like':like})

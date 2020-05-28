@@ -9,11 +9,18 @@ alert alert-info
 <div class="container pt-5 mt-5" >
     <div class="jumbotron  d-flex justify-content-center">
         <div class="menu-detail">
-            <p class="heading"> {{article_detail.title}}</p>
+            <p class="heading"> {{article_detail.title}} </p>
             <div class="details_date">
                 <img class="navpic" src="{{article_detail.user.profile.pro_pic.url}}" width="50" height="50"   alt=""><br>
                 <a  href="{% url 'blogs:user_profile' article_detail.user.id %}">{{article_detail.user}}</a>
-                <br><i>  {{article_detail.publish_date}}</i>
+                    {%if total_likes%}
+
+
+                 <a href="{% url 'blogs:like_list' article_detail.pk %}"> <i class="fa fa-heart like" aria-hidden="true"></i> {{total_likes}}</a>
+                    {%else%}
+                     <i class="fa fa-heart-o like" aria-hidden="true"></i> {{total_likes}}
+                    {%endif%}
+                <br><i>  {{article_detail.publish_date}}  </i>
              </div>
             <div class="post">
                  <img class="img-fluid" src="{{article_detail.title_image.url}}"  alt="title_image">{{article_detail.details|safe|linebreaks}}
@@ -22,6 +29,20 @@ alert alert-info
                 <a href="{% url 'blogs:update' article_detail.id %}"> Update</a>
                  |
                 <a  href="{% url 'blogs:delete' article_detail.id %}"> Delete</a>
+            {% endif%}
+
+
+        {% if user.is_authenticated%}
+            {% if article_detail.user != user %}
+            <form class="" action="{% url 'blogs:post_like'%}" method="post">
+                {% csrf_token %}
+                {%if is_like%}
+                  <button class='like'type="submit" name="like" value="{{article_detail.id}}">Unlike <i class="fa fa-heart" aria-hidden="true"></i></button>
+                {%else%}
+                <button class='like'type="submit" name="like" value="{{article_detail.id}}">Like <i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                {%endif%}
+            </form>
+             {% endif%}
             {% endif%}
         </div>
     </div>

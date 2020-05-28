@@ -67,10 +67,7 @@
       color: #00adb5;
   }
   
-  .menu-detai {
-      display: flex;
-      flex-direction: column;
-  }
+
   
   .details_date {
       font-size: 14px;
@@ -85,8 +82,8 @@
       border-bottom: 2px solid #393e4652;
   }
 
-  .post p img { max-width: 100% !important;
-                min-width:50% !important;
+  .post p img { width: 100% !important;
+                
                 height: auto !important;
 
       }
@@ -196,5 +193,24 @@ position:fixed;
 }
 
 
+.like {
+  background-color: trasparent;
+  border: none;
+  color: red ;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
 
 
+.like_list div{
+border-bottom:1px solid rgb(47, 204, 204);
+padding:10px;
+align-items:center;
+justify-content:center;
+text-align:center;
+
+}
+.like_list a{
+color:black;}

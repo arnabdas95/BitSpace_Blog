@@ -1,0 +1,15 @@
+{% extends 'blogs/base.html' %}
+{% block content %}
+{%load static %}
+<div  class="container" ><div class="jumbotron like_list" style="margin-top:10rem;">
+        {%for i in like%}
+        <div> <a href="{%url 'blogs:user_profile' i.id %}"><img class=" indexpic" src=" {{i.profile.pro_pic.url}}"> {{i}}</a></div>
+
+{%endfor%}
+    </div>
+</div>
+
+
+
+
+{%endblock%}

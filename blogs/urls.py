@@ -29,5 +29,11 @@ urlpatterns = [
 
     path('search/', views.search, name='search'),
 
+    #like
+    path('like/', views.post_like, name='post_like'),
+    path('like_list/<int:pk>/', views.like_list, name='like_list'),
+
+
+
 
 ]

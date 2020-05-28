@@ -1,12 +1,8 @@
-import ckeditor
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
 from ckeditor.fields import RichTextField
-
-
-# Create your models here.
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -22,7 +18,6 @@ class Profile(models.Model):
             img.thumbnail(output_size)
             img.save(self.pro_pic.path)
 
-
 class Article(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=500)
@@ -30,15 +25,15 @@ class Article(models.Model):
     #details = RichTextField()
     title_image = models.ImageField(default='default_title.jpg', upload_to='Article_heading_pics')
     publish_date = models.DateTimeField(auto_now=True)
+    likes = models.ManyToManyField(User,related_name="likes", blank=True)
 
     def __str__(self):
         return self.user.username
 
-
-
+    def total_likes(self):
+        return self.likes.count()
     class Meta:
        ordering = ['-publish_date']
-
 
 
 
